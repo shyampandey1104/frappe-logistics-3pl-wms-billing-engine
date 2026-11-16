@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include wms3pl *.css
+recursive-include wms3pl *.csv
+recursive-include wms3pl *.html
+recursive-include wms3pl *.ico
+recursive-include wms3pl *.js
+recursive-include wms3pl *.json
+recursive-include wms3pl *.md
+recursive-include wms3pl *.png
+recursive-include wms3pl *.py
+recursive-include wms3pl *.svg
+recursive-include wms3pl *.txt
+recursive-exclude wms3pl *.pyc
