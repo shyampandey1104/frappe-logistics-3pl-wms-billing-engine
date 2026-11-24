@@ -4,7 +4,7 @@
 app_name = "wms3pl"
 app_title = "Frappe Logistics 3Pl Wms Billing Engine"
 app_publisher = "Shyamkumar Pandey"
-app_description = "Frappe Logistics 3Pl Wms Billing Engine for Frappe and ERPNext"
+app_description = "Frappe Logistics 3Pl Wms Billing Engine - Enterprise Multi-DocType Solution for Frappe & ERPNext"
 app_email = "shyampandey1104@gmail.com"
 app_license = "MIT"
 
@@ -16,16 +16,22 @@ app_include_js = "/assets/wms3pl/js/wms3pl.bundle.js"
 # Document Events
 # ---------------
 doc_events = {
-    "DocType Event": {
-        "on_submit": "wms3pl.engine.on_document_submit",
-        "on_cancel": "wms3pl.engine.on_document_cancel"
+    "Frappe Logistics 3Pl Wms Billing Engine Entry": {
+        "validate": "wms3pl.services.validator.EnterpriseValidationEngine.validate_compliance_rules",
+        "on_submit": "wms3pl.services.integration_service.EnterpriseIntegrationService.verify_remote_status"
     }
 }
 
-# Scheduled Tasks
-# ---------------
+# Scheduled Background Tasks
+# --------------------------
 scheduler_events = {
+    "hourly": [
+        "wms3pl.tasks.hourly_sync"
+    ],
     "daily": [
-        "wms3pl.engine.daily_scheduled_sync"
+        "wms3pl.tasks.daily_reconciliation"
+    ],
+    "weekly": [
+        "wms3pl.tasks.weekly_digest"
     ]
 }
